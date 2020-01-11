@@ -1,7 +1,7 @@
 package edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.service;
 
 public interface DynamicVehicleDataDto {
-    String getPosition();
+    CoordinateDto getPosition();
 
     float getEnginePressure();
 

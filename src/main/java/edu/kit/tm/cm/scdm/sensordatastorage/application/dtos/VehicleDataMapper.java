@@ -9,5 +9,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface VehicleDataMapper {
     StaticVehicleDataResponse toResponse(VehicleDataDto dto);
+
     List<StaticVehicleDataResponse> toResponseList(List<VehicleDataDto> dtos);
 }
