@@ -2,8 +2,10 @@ package edu.kit.tm.cm.scdm.sensordatastorage.application.services;
 
 import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.service.DynamicVehicleDataDto;
 import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.service.VehicleDataDto;
+import edu.kit.tm.cm.scdm.sensordatastorage.domain.model.Coordinate;
 import edu.kit.tm.cm.scdm.sensordatastorage.domain.model.DynamicVehicleData;
 import edu.kit.tm.cm.scdm.sensordatastorage.domain.model.VehicleData;
+import edu.kit.tm.cm.scdm.sensordatastorage.domain.model.VehicleType;
 import edu.kit.tm.cm.scdm.sensordatastorage.infrastructure.repositories.VehicleDataRepository;
 import edu.kit.tm.cm.scdm.sensordatastorage.infrastructure.repositories.DynamicVehicleDataRepository;
 import org.springframework.stereotype.Service;
@@ -32,46 +34,47 @@ public class SensorDataStorageService {
     /**
      * Creates and saves a new Car in the database
      * @param vin Vehicle Identification Number
-     * @param model Model of car
-     * @param tag Licenseplate of Vehicle
+     * @param model Model of vehicle
+     * @param tag Licenceplate of Vehicle
      * @param seats Number of seats
      * @param tankSize Size of tank in liters
-     * @param carType Type of Car
+     * @param carType Type of Vehicle
      * @param endpointIdentifier Identifier for DiagnosticEndpoint
-     * @return Car created and saved
+     * @return VehicleData created and saved
      */
     @Transactional
-    public VehicleData createCar(String vin, String model, String tag, int seats, int tankSize, String carType,
-                         String endpointIdentifier) {
-        final VehicleData car = new VehicleData(vin, model, tag, seats, tankSize, carType, endpointIdentifier);
+    public VehicleData createVehicle(String vin, String model, String tag, int seats, int tankSize,
+                                     VehicleType vehicleType, String endpointIdentifier) {
+        final VehicleData car = new VehicleData(vin, model, tag, seats, tankSize, vehicleType, endpointIdentifier);
         return this.vehicleDataRepository.save(car);
     }
 
     /**
-     * Creates an instance of SensorData an saves it to Database
+     * Creates an instance of DynamicVehicleData an saves it to Database
      *
      * @param vin Vehicle Identification Number
-     * @param position Position of Car
-     * @param enginePressure Engine Pressure of Car
-     * @param tirePressure Tire pressure of CAr
+     * @param position Position of Vehicle
+     * @param enginePressure Engine Pressure of Vehicle
+     * @param tirePressure Tire pressure of Vehicle
      * @param tankLevel Level of tank
-     * @param timestamp Time of
-     * @return saved SensorData object
+     * @param timestamp Time of measurement
+     * @return saved DynamicVehicleData object
      */
     @Transactional
-    public DynamicVehicleData pushSensorData(String vin, String position, float enginePressure, float tirePressure,
-                                             float tankLevel,
-                                             String timestamp) {
-        final DynamicVehicleData data = new DynamicVehicleData(position, enginePressure, tirePressure, tankLevel, timestamp);
-        VehicleData car = vehicleDataRepository.findById(vin).get();
-        data.setCar(car);
+    public DynamicVehicleData pushSensorData(String vin, Coordinate position, float enginePressure, float tirePressure,
+                                             float tankLevel, String timestamp) {
+
+        VehicleData vehicle = vehicleDataRepository.findById(vin).get();
+        final DynamicVehicleData data = new DynamicVehicleData(position, enginePressure, tirePressure, tankLevel,
+                                                                timestamp,vehicle);
+
         return this.dynamicVehicleDataRepository.save(data);
     }
 
     /**
-     * Returns a list of all known Cars limited by a total count
-     * @param count limit to List of cars
-     * @return limited List of Cars
+     * Returns a list of all known Vehicles limited by a total count
+     * @param count limit to List of vehicles
+     * @return limited List of Vehicles
      */
     @Transactional(readOnly = true)
     public List<VehicleData> getVehicles(int count) {
@@ -79,9 +82,9 @@ public class SensorDataStorageService {
     }
 
     /**
-     * Finds a car by it's vin
+     * Finds a vehicle by it's vin
      * @param vin Vehicle Identification Number to identify a specific vehicle
-     * @return Car instance if exists, else empty Optional object
+     * @return Vehicle instance if exists, else empty Optional object
      */
     @Transactional(readOnly = true)
     public Optional<VehicleData> getVehicle(String vin) {
@@ -89,8 +92,8 @@ public class SensorDataStorageService {
     }
 
     /**
-     * Returns all Cars in it's DTO
-     * @return List of CarDTO
+     * Returns all Vehicles in it's DTO
+     * @return List of VehicleDataDTO
      */
     @Transactional(readOnly = true)
     public List<VehicleDataDto> getAllVehicleDtos() {
@@ -98,9 +101,9 @@ public class SensorDataStorageService {
     }
 
     /**
-     * Finds a car by it's vin
+     * Finds a vehicle by it's vin
      * @param vin Vehicle Identification Number to identify a specific vehicle
-     * @return CarDTO instance if exists, else empty Optional object
+     * @return VehicleDataDTO instance if exists, else empty Optional object
      */
     @Transactional(readOnly = true)
     public VehicleDataDto getVehicleDto(String vin) {
@@ -108,9 +111,9 @@ public class SensorDataStorageService {
     }
 
     /**
-     * Return the latest SensorData for a given car
+     * Return the latest SensorData for a given vehicle
      * @param vin Vehicle Identification Number to identify a specific vehicle
-     * @return latest SensorData for Car
+     * @return latest SensorData for a Vehicle
      */
     @Transactional(readOnly = true)
     public DynamicVehicleDataDto getLatestSensorData(String vin) {

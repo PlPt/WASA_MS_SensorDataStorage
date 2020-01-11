@@ -31,25 +31,25 @@ public class VehicleData implements Serializable {
     @Column(name = "tank_size", nullable = false)
     private int tankSize;
 
-    @Column(name = "car_type", nullable = false)
-    private String carType;
+    @Column(name = "vehicle_type", nullable = false)
+    private VehicleType vehicleType;
 
-    @Column(name = "endpoint_identifier") //Identifier for Diagonsitic Endpoint e.g. Port or Url
+    @Column(name = "endpoint_identifier")
     private String endpointIdentifier;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "car", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehicle", orphanRemoval = true)
     @OrderBy("timestamp desc")
     private List<DynamicVehicleData> dynamicVehicleDataList;
 
-    // TODO Referenz auf car
-    public VehicleData(String vin, String model, String tag, int seats, int tankSize, String carType,
+
+    public VehicleData(String vin, String model, String tag, int seats, int tankSize, VehicleType vehicleType,
                String endpointIdentifier) {
         this.vin = vin;
         this.model = model;
         this.tag = tag;
         this.seats = seats;
         this.tankSize = tankSize;
-        this.carType = carType;
+        this.vehicleType = vehicleType;
         this.endpointIdentifier = endpointIdentifier;
     }
 

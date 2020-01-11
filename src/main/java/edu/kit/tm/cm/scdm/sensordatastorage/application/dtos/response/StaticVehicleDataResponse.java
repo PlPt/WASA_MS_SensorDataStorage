@@ -27,7 +27,7 @@ public class StaticVehicleDataResponse {
     @ApiModelProperty(position = 6, required = true)
     private String vehicleType;
 
-    @ApiModelProperty(position = 7, required = true) //Identifier for Diagonsitic Endpoint e.g. Port or Url
+    @ApiModelProperty(position = 7, required = true)
     private String endpointIdentifier;
 
 

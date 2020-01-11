@@ -6,12 +6,9 @@ import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.VehicleDataMapper;
 import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.response.DynamicVehicleDataResponse;
 import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.response.StaticVehicleDataResponse;
 import edu.kit.tm.cm.scdm.sensordatastorage.application.services.SensorDataStorageService;
-import edu.kit.tm.cm.scdm.sensordatastorage.domain.model.DynamicVehicleData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController

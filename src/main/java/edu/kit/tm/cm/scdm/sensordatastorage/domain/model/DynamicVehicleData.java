@@ -2,12 +2,7 @@ package edu.kit.tm.cm.scdm.sensordatastorage.domain.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
@@ -19,8 +14,9 @@ public class DynamicVehicleData implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "position")
-    private String position;
+
+    @OneToOne
+    private Coordinate position;
 
     @Column(name = "engine_pressure")
     private float enginePressure;
@@ -32,18 +28,20 @@ public class DynamicVehicleData implements Serializable {
     private float tankLevel;
 
     @Column(name = "timestamp")
-    //TODO add iso
     private String timestamp;
 
     @ManyToOne(optional = false)
-    private VehicleData car;
+    private VehicleData vehicle;
 
-    public DynamicVehicleData(String position, float enginePressure, float tirePressure, float tankLevel, String timestamp) {
+    public DynamicVehicleData(Coordinate position, float enginePressure, float tirePressure, float tankLevel,
+                              String timestamp,VehicleData vehicle) {
         this.position = position;
         this.enginePressure = enginePressure;
         this.tirePressure = tirePressure;
         this.tankLevel = tankLevel;
         this.timestamp = timestamp;
+        this.vehicle = vehicle;
+
     }
 
     public DynamicVehicleData() {
@@ -51,6 +49,6 @@ public class DynamicVehicleData implements Serializable {
     }
 
     public String getVin() {
-        return car.getVin();
+        return vehicle.getVin();
     }
 }
