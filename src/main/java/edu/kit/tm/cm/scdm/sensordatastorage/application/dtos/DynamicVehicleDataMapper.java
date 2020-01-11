@@ -6,5 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface DynamicVehicleDataMapper {
-    DynamicVehicleDataResponse toRespone(DynamicVehicleDataResponse dto);
+    DynamicVehicleDataResponse toRespone(DynamicVehicleDataDto dto);
 }

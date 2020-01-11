@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel("VehicleData")
+@ApiModel("StaticVehicleData")
 public class StaticVehicleDataResponse {
 
     @ApiModelProperty(position = 1, required = true)
@@ -30,20 +30,6 @@ public class StaticVehicleDataResponse {
     @ApiModelProperty(position = 7, required = true) //Identifier for Diagonsitic Endpoint e.g. Port or Url
     private String endpointIdentifier;
 
-
-    public StaticVehicleDataResponse() {
-
-    }
-
-    public StaticVehicleDataResponse(VehicleData car) {
-        this.vin = car.getVin();
-        this.vehicleType = car.getCarType();
-        this.endpointIdentifier = car.getEndpointIdentifier();
-        this.model = car.getModel();
-        this.tag = car.getTag();
-        this.tankSize = car.getTankSize();
-        this.seats = car.getSeats();
-    }
 
 }
 
