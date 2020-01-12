@@ -28,8 +28,8 @@ public class VehicleData implements Serializable {
     @Column(name = "seats", nullable = false)
     private int seats;
 
-    @Column(name = "tank_size", nullable = false)
-    private int tankSize;
+    @Column(name = "tank_capacity", nullable = false)
+    private int tankCapacity;
 
     @Column(name = "vehicle_type", nullable = false)
     private VehicleType vehicleType;
@@ -42,13 +42,13 @@ public class VehicleData implements Serializable {
     private List<DynamicVehicleData> dynamicVehicleDataList;
 
 
-    public VehicleData(String vin, String model, String tag, int seats, int tankSize, VehicleType vehicleType,
-               String endpointIdentifier) {
+    public VehicleData(String vin, String model, String tag, int seats, int tankCapacity, VehicleType vehicleType,
+                       String endpointIdentifier) {
         this.vin = vin;
         this.model = model;
         this.tag = tag;
         this.seats = seats;
-        this.tankSize = tankSize;
+        this.tankCapacity = tankCapacity;
         this.vehicleType = vehicleType;
         this.endpointIdentifier = endpointIdentifier;
     }

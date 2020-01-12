@@ -9,7 +9,7 @@ public interface VehicleDataDto {
 
     int getSeats();
 
-    int getTankSize();
+    int getTankCapacity();
 
     String getVehicleType();
 

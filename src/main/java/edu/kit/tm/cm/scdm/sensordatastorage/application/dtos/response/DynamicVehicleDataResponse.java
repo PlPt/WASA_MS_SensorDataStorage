@@ -15,7 +15,7 @@ public class DynamicVehicleDataResponse {
     private CoordinateResponse position;
 
     @ApiModelProperty(position = 2, required = true)
-    private float enginePressure;
+    private float oilPressure;
 
     @ApiModelProperty(position = 3, required = true)
     private float tirePressure;

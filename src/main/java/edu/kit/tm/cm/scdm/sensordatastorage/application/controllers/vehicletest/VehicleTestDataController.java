@@ -1,7 +1,5 @@
 package edu.kit.tm.cm.scdm.sensordatastorage.application.controllers.vehicletest;
 
-import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.DynamicVehicleDataMapper;
-import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.VehicleDataMapper;
 import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.response.DynamicVehicleDataResponse;
 import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.response.StaticVehicleDataResponse;
 import edu.kit.tm.cm.scdm.sensordatastorage.application.services.SensorDataStorageService;
@@ -26,14 +24,14 @@ public class VehicleTestDataController implements VehicleTestApi {
     @Override
     public void createVehicle(StaticVehicleDataResponse vehicle) {
        VehicleData data =  service.createVehicle(vehicle.getVin(),vehicle.getModel(),vehicle.getTag(),vehicle.getSeats(),
-                vehicle.getTankSize(),vehicle.getVehicleType(),vehicle.getEndpointIdentifier());
+                vehicle.getTankCapacity(),vehicle.getVehicleType(),vehicle.getEndpointIdentifier());
     }
 
     @Override
     public void addDynamicVehicleData(String vin, DynamicVehicleDataResponse dynamicVehicleData) {
 
        service.pushSensorData(vin,new Coordinate(dynamicVehicleData.getPosition().getLatitude(),
-                    dynamicVehicleData.getPosition().getLongitude()),dynamicVehicleData.getEnginePressure(),
+                    dynamicVehicleData.getPosition().getLongitude()),dynamicVehicleData.getOilPressure(),
                     dynamicVehicleData.getTirePressure(),dynamicVehicleData.getTankLevel(),
                     dynamicVehicleData.getTimestamp());
 

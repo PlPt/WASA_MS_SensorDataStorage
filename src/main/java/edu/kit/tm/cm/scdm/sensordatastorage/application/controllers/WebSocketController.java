@@ -10,10 +10,6 @@ import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.util.HtmlUtils;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Controller
 public class WebSocketController {
@@ -29,7 +25,7 @@ public class WebSocketController {
     @SendTo("/response/registerVehicle")
     public void createVehicle(StaticVehicleDataResponse vehicle) {
         VehicleData data =  service.createVehicle(vehicle.getVin(),vehicle.getModel(),vehicle.getTag(),vehicle.getSeats(),
-                vehicle.getTankSize(),vehicle.getVehicleType(),vehicle.getEndpointIdentifier());
+                vehicle.getTankCapacity(),vehicle.getVehicleType(),vehicle.getEndpointIdentifier());
     }
 
 
@@ -37,7 +33,7 @@ public class WebSocketController {
     @SendTo("/response/addDynamicVehicleData")
     public void addDynamicVehicleData(@DestinationVariable String vin, DynamicVehicleDataResponse dynamicVehicleData) {
         service.pushSensorData(vin,new Coordinate(dynamicVehicleData.getPosition().getLatitude(),
-                        dynamicVehicleData.getPosition().getLongitude()),dynamicVehicleData.getEnginePressure(),
+                        dynamicVehicleData.getPosition().getLongitude()),dynamicVehicleData.getOilPressure(),
                 dynamicVehicleData.getTirePressure(),dynamicVehicleData.getTankLevel(),
                 dynamicVehicleData.getTimestamp());
     }

@@ -23,7 +23,7 @@ public class StaticVehicleDataResponse {
     private int seats;
 
     @ApiModelProperty(position = 5, required = true)
-    private int tankSize;
+    private int tankCapacity;
 
     @ApiModelProperty(position = 6, required = true)
     private VehicleType vehicleType;
