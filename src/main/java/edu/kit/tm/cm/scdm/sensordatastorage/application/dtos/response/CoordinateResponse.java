@@ -14,7 +14,7 @@ public class CoordinateResponse {
     private double latitude;
 
     @ApiModelProperty(position = 2, required = true)
-    private float longitude;
+    private double longitude;
 
 
 
