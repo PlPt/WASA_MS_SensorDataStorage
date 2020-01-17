@@ -62,7 +62,7 @@ public class SensorDataStorageService {
      */
     @Transactional
     public DynamicVehicleData addDynamicData(String vin, Coordinate position, float enginePressure, float tirePressure,
-                                             float tankLevel, String timestamp) {
+                                             double tankLevel, String timestamp) {
 
         VehicleData vehicle = vehicleDataRepository.findById(vin).get();
         final DynamicVehicleData data = new DynamicVehicleData(position, enginePressure, tirePressure, tankLevel,

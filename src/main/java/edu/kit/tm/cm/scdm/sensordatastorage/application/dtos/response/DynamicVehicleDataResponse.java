@@ -19,7 +19,7 @@ public class DynamicVehicleDataResponse {
     private float tirePressure;
 
     @ApiModelProperty(position = 4, required = true)
-    private float tankLevel;
+    private double tankLevel;
 
     @ApiModelProperty(position = 5, required = true)
     private String timestamp;

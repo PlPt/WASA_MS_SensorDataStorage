@@ -7,7 +7,7 @@ public interface DynamicVehicleDataDto {
 
     float getTirePressure();
 
-    float getTankLevel();
+    double getTankLevel();
 
     String getTimestamp();
 }
