@@ -1,6 +1,5 @@
 package edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.response;
 
-import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.service.CoordinateDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,8 +14,6 @@ public class CoordinateResponse {
 
     @ApiModelProperty(position = 2, required = true)
     private double longitude;
-
-
 
 
 }

@@ -2,7 +2,6 @@ package edu.kit.tm.cm.scdm.sensordatastorage.application.controllers.vehicletest
 
 import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.response.DynamicVehicleDataResponse;
 import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.response.StaticVehicleDataResponse;
-import edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.service.VehicleDataDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,7 @@ public interface VehicleTestApi {
 
     @GetMapping("addDynamicData/{vin}")
     @ApiOperation(value = "Adds a new Vehicle to DataStorage")
-    void addDynamicVehicleData(@PathVariable String vin,DynamicVehicleDataResponse vehicle);
+    void addDynamicVehicleData(@PathVariable String vin, DynamicVehicleDataResponse vehicle);
 
 
 }

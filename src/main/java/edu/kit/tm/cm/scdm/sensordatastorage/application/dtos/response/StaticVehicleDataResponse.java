@@ -1,6 +1,5 @@
 package edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.response;
 
-import edu.kit.tm.cm.scdm.sensordatastorage.domain.model.VehicleData;
 import edu.kit.tm.cm.scdm.sensordatastorage.domain.model.VehicleType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

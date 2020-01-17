@@ -9,6 +9,7 @@ import edu.kit.tm.cm.scdm.sensordatastorage.application.services.SensorDataStora
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 @RestController
@@ -39,6 +40,6 @@ public class SensorDataStorageApiController implements SensorDataStorageApi {
 
     @Override
     public DynamicVehicleDataResponse getSensorDataByVin(String vin) {
-        return dynamicVehicleDataMapper.toRespone(service.getLatestSensorData(vin));
+        return dynamicVehicleDataMapper.toResponse(service.getLatestDynamicData(vin));
     }
 }

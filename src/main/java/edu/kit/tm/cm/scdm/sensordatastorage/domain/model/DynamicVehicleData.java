@@ -15,7 +15,7 @@ public class DynamicVehicleData implements Serializable {
     private int id;
 
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private Coordinate position;
 
     @Column(name = "oil_pressure")
