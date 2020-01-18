@@ -24,7 +24,7 @@ public class VehicleTestDataController implements VehicleTestApi {
     @Override
     public void createVehicle(StaticVehicleDataResponse vehicle) {
         VehicleData data = service.createVehicle(vehicle.getVin(), vehicle.getModel(), vehicle.getTag(),
-                vehicle.getSeats(), vehicle.getTankCapacity(), vehicle.getVehicleType(),
+                vehicle.getSeats(), vehicle.getTankCapacity(), vehicle.getType(),
                 vehicle.getEndpointIdentifier());
     }
 

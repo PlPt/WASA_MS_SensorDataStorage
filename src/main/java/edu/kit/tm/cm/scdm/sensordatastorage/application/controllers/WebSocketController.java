@@ -24,7 +24,7 @@ public class WebSocketController {
     @SendTo("/response/registerVehicle")
     public void createVehicle(StaticVehicleDataResponse vehicle) {
         service.createVehicle(vehicle.getVin(), vehicle.getModel(), vehicle.getTag(), vehicle.getSeats(),
-                vehicle.getTankCapacity(), vehicle.getVehicleType(), vehicle.getEndpointIdentifier());
+                vehicle.getTankCapacity(), vehicle.getType(), vehicle.getEndpointIdentifier());
     }
 
 
