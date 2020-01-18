@@ -8,15 +8,19 @@ import edu.kit.tm.cm.scdm.sensordatastorage.domain.model.VehicleData;
 import edu.kit.tm.cm.scdm.sensordatastorage.domain.model.VehicleType;
 import edu.kit.tm.cm.scdm.sensordatastorage.infrastructure.repositories.DynamicVehicleDataRepository;
 import edu.kit.tm.cm.scdm.sensordatastorage.infrastructure.repositories.VehicleDataRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SensorDataStorageService {
     private final VehicleDataRepository vehicleDataRepository;
     private final DynamicVehicleDataRepository dynamicVehicleDataRepository;
+    Logger logger = LoggerFactory.getLogger(SensorDataStorageService.class);
 
     /**
      * Initializes the DataStorageService via DependencyInjection
@@ -54,20 +58,27 @@ public class SensorDataStorageService {
      *
      * @param vin            Vehicle Identification Number
      * @param position       Position of Vehicle
-     * @param enginePressure Engine Pressure of Vehicle
+     * @param oilPressure Oil Pressure of Vehicle
      * @param tirePressure   Tire pressure of Vehicle
      * @param tankLevel      Level of tank
      * @param timestamp      Time of measurement
      * @return Saved DynamicVehicleData object
      */
     @Transactional
-    public DynamicVehicleData addDynamicData(String vin, Coordinate position, float enginePressure, float tirePressure,
+    public DynamicVehicleData addDynamicData(String vin, Coordinate position, double oilPressure, double tirePressure,
                                              double tankLevel, String timestamp) {
 
-        VehicleData vehicle = vehicleDataRepository.findById(vin).get();
-        final DynamicVehicleData data = new DynamicVehicleData(position, enginePressure, tirePressure, tankLevel,
-                timestamp, vehicle);
-        return this.dynamicVehicleDataRepository.save(data);
+        Optional<VehicleData> vehicle = vehicleDataRepository.findById(vin);
+        if(vehicle.isPresent()) {
+            final DynamicVehicleData data = new DynamicVehicleData(position, oilPressure, tirePressure, tankLevel,
+                    timestamp, vehicle.get());
+            return this.dynamicVehicleDataRepository.save(data);
+        }
+        else{
+            logger.error(String.format("Vehicle with vin '%s' was not registered as vehicle before. " +
+                    "Received data could not be stored",vin));
+            return  null;
+        }
     }
 
     /**

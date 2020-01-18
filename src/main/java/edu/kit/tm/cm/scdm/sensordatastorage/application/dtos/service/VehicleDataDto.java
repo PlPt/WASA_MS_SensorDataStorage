@@ -11,7 +11,7 @@ public interface VehicleDataDto {
 
     int getTankCapacity();
 
-    String getVehicleType();
+    String getType();
 
     String getEndpointIdentifier();
 }

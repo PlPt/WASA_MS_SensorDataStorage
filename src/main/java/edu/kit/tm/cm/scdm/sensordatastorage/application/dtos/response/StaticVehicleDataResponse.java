@@ -25,7 +25,7 @@ public class StaticVehicleDataResponse {
     private int tankCapacity;
 
     @ApiModelProperty(position = 6, required = true)
-    private VehicleType vehicleType;
+    private VehicleType type;
 
     @ApiModelProperty(position = 7, required = true)
     private String endpointIdentifier;

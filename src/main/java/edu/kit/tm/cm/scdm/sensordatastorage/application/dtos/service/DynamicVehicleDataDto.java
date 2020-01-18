@@ -3,9 +3,9 @@ package edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.service;
 public interface DynamicVehicleDataDto {
     CoordinateDto getPosition();
 
-    float getOilPressure();
+    double getOilPressure();
 
-    float getTirePressure();
+    double getTirePressure();
 
     double getTankLevel();
 
