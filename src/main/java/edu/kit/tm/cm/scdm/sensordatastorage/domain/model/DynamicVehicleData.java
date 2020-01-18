@@ -19,13 +19,13 @@ public class DynamicVehicleData implements Serializable {
     private Coordinate position;
 
     @Column(name = "oil_pressure")
-    private double oilPressure;
+    private Double oilPressure;
 
     @Column(name = "tire_pressure")
-    private double tirePressure;
+    private Double tirePressure;
 
     @Column(name = "tank_level")
-    private double tankLevel;
+    private Double tankLevel;
 
     @Column(name = "timestamp")
     private String timestamp;
@@ -33,7 +33,7 @@ public class DynamicVehicleData implements Serializable {
     @ManyToOne(optional = false)
     private VehicleData vehicle;
 
-    public DynamicVehicleData(Coordinate position, double oilPressure, double tirePressure, double tankLevel,
+    public DynamicVehicleData(Coordinate position, Double oilPressure, Double tirePressure, Double tankLevel,
                               String timestamp, VehicleData vehicle) {
         this.position = position;
         this.oilPressure = oilPressure;

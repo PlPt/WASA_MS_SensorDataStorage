@@ -31,8 +31,11 @@ public class WebSocketController {
     @MessageMapping("/addDynamicVehicleData/{vin}")
     @SendTo("/response/addDynamicVehicleData")
     public void addDynamicVehicleData(@DestinationVariable String vin, DynamicVehicleDataResponse dynamicVehicleData) {
-        service.addDynamicData(vin, new Coordinate(dynamicVehicleData.getPosition().getLatitude(),
-                dynamicVehicleData.getPosition().getLongitude()), dynamicVehicleData.getOilPressure(),
+        Coordinate currentPosition = null;
+        if(dynamicVehicleData.getPosition()!=null){
+            currentPosition = new Coordinate(dynamicVehicleData.getPosition().getLatitude(),dynamicVehicleData.getPosition().getLongitude());
+        }
+        service.addDynamicData(vin, currentPosition, dynamicVehicleData.getOilPressure(),
                 dynamicVehicleData.getTirePressure(), dynamicVehicleData.getTankLevel(),
                 dynamicVehicleData.getTimestamp());
     }

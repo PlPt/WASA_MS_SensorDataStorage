@@ -1,13 +1,15 @@
 package edu.kit.tm.cm.scdm.sensordatastorage.application.dtos.service;
 
+import java.util.Optional;
+
 public interface DynamicVehicleDataDto {
     CoordinateDto getPosition();
 
-    double getOilPressure();
+    Double getOilPressure();
 
-    double getTirePressure();
+    Double getTirePressure();
 
-    double getTankLevel();
+    Double getTankLevel();
 
     String getTimestamp();
 }

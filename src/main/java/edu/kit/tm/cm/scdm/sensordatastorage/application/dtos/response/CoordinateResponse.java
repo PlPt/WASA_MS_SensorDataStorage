@@ -9,10 +9,10 @@ import lombok.Data;
 public class CoordinateResponse {
 
 
-    @ApiModelProperty(position = 1, required = true)
+    @ApiModelProperty(position = 1)
     private double latitude;
 
-    @ApiModelProperty(position = 2, required = true)
+    @ApiModelProperty(position = 2)
     private double longitude;
 
 

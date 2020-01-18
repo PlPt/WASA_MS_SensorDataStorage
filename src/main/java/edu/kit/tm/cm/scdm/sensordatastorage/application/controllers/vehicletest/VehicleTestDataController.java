@@ -30,9 +30,12 @@ public class VehicleTestDataController implements VehicleTestApi {
 
     @Override
     public void addDynamicVehicleData(String vin, DynamicVehicleDataResponse dynamicVehicleData) {
+        Coordinate currentPosition = null;
+        if(dynamicVehicleData.getPosition()!=null){
+            currentPosition = new Coordinate(dynamicVehicleData.getPosition().getLatitude(),dynamicVehicleData.getPosition().getLongitude());
+        }
 
-        service.addDynamicData(vin, new Coordinate(dynamicVehicleData.getPosition().getLatitude(),
-                dynamicVehicleData.getPosition().getLongitude()), dynamicVehicleData.getOilPressure(),
+        service.addDynamicData(vin, currentPosition, dynamicVehicleData.getOilPressure(),
                 dynamicVehicleData.getTirePressure(), dynamicVehicleData.getTankLevel(),
                 dynamicVehicleData.getTimestamp());
 
