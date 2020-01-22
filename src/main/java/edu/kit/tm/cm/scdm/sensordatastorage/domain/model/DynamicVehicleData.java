@@ -48,6 +48,10 @@ public class DynamicVehicleData implements Serializable {
 
     }
 
+    /**
+     * Getter for VIN from vehicle reference
+     * @return vin string from vehicle
+     */
     public String getVin() {
         return vehicle.getVin();
     }
